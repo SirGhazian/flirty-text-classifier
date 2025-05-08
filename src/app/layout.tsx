@@ -13,7 +13,7 @@ const CuteFont = Salsa({
 });
 
 export const metadata: Metadata = {
-  title: "Cek Kode Cinta",
+  title: "Cek Kode Hati",
   description: "Created by SirGhazian",
 };
 
