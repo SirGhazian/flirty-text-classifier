@@ -1,9 +1,12 @@
 "use client";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useState, useRef } from "react";
 import { SparklesText } from "@/components/magicui/sparkles-text";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Input } from "@/components/ui/input";
+import { FlipText } from "@/components/magicui/flip-text";
+import { Separator } from "@/components/ui/separator";
 import {
   AlertDialog,
   AlertDialogCancel,
@@ -13,8 +16,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import Image from "next/image";
-import { FlipText } from "@/components/magicui/flip-text";
+import { SiInstagram, SiGithub, SiHuggingface } from "react-icons/si";
 
 export default function Page() {
   const [inputText, setInputText] = useState<string>(""); // state untuk input user
@@ -30,7 +32,6 @@ export default function Page() {
       return;
     }
     setLoading(true);
-    setResponse(null); // reset respon ketika input berubah
     audioRef.current?.play();
     try {
       // fetch api
@@ -101,16 +102,23 @@ export default function Page() {
         {/* <div>{response && !loading ? response : ""}</div> */}
 
         {response && !loading ? (
-          <div className="mt-4 p-4 bg-pink-100 rounded-lg w-full flex flex-col items-center justify-center">
-            <FlipText delayMultiple={0.15} className="text-3xl font-bold font-[Salsa]">
-              {response}
-            </FlipText>
-            {response === "nonflirty" && (
-              <p className="text-gray-600 mt-2">Yahhh kayanya ada yang lagi ngode nich...</p>
+          <div className="mt-4 p-4 bg-pink-100 rounded-lg w-full flex flex-col items-center">
+            <div className="w-full h-13 ring-3 ring-pink-300 rounded-lg flex items-center justify-center mb-4">
+              <FlipText
+                delayMultiple={0.15}
+                className="text-4xl font-bold text-pink-600 font-[Salsa]"
+              >
+                {response}
+              </FlipText>
+            </div>
+            {response && response[0] === "Non-Flirty" && (
+              <p className="text-gray-600 mt-2 text-center">
+                Sayang sekali... sepertinya ini bukan ngode deh 😔...
+              </p>
             )}
-            {response !== "nonflirty" && (
-              <p className="text-gray-600 mt-2">
-                Sayang sekali... sepertinya ini bukan ngode deh...
+            {response && response[0] === "Flirty" && (
+              <p className="text-gray-600 mt-2 text-center">
+                Kayanya ada yang lagi ngode nich 👀...
               </p>
             )}
           </div>
@@ -136,8 +144,24 @@ export default function Page() {
               </p>
             </div>
 
-            <div className="bg-pink-200 p-2 rounded-lg">
-              <p className="text-gray-600">2025 - SirGhazian</p>
+            <div className="bg-white p-3 rounded-lg flex items-center justify-center text-2xl text-pink-500">
+              <a href="https://github.com/SirGhazian" target="_blank">
+                <SiGithub className="hover:text-pink-300 duration-300" />
+              </a>
+              <a href="https://huggingface.co/SirGhazian" target="_blank">
+                <SiHuggingface className="mx-7 hover:text-pink-300 duration-300" />
+              </a>
+              <a href="https://instagram.com/ghazian_tza" target="_blank">
+                <SiInstagram className="hover:text-pink-300 duration-300" />
+              </a>
+            </div>
+
+            <div className="p-2 grid grid-cols-3 items-center">
+              <Separator orientation="horizontal" className="bg-black/20" />
+              <p className="text-gray-700 font-medium flex items-center justify-center">
+                2025 - SirGhazian
+              </p>
+              <Separator orientation="horizontal" className="bg-black/20" />
             </div>
           </div>
         )}
