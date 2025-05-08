@@ -53,7 +53,7 @@ export default function Page() {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputText(e.target.value);
-    setResponse(null); // reset response when input changes
+    setResponse(null); // reset response ketika input berubah
   };
 
   return (
@@ -71,7 +71,7 @@ export default function Page() {
 
         <Input
           value={inputText}
-          onChange={handleInputChange} // update this handler
+          onChange={handleInputChange} // update handler
           placeholder="kamu cantik banget!"
           className="text-center bg-white ring-1 ring-pink-400"
         />
@@ -98,12 +98,9 @@ export default function Page() {
           </AlertDialog>
         )}
 
-        {/* Tampilkan hasil jika ada */}
-        {/* <div>{response && !loading ? response : ""}</div> */}
-
         {response && !loading ? (
-          <div className="mt-4 p-4 bg-pink-100 rounded-lg w-full flex flex-col items-center">
-            <div className="w-full h-13 ring-3 ring-pink-300 rounded-lg flex items-center justify-center mb-4">
+          <div className="mt-2 p-4 bg-pink-100 rounded-lg w-full flex flex-col items-center">
+            <div className="w-full h-17 ring-3 ring-pink-300 rounded-lg flex items-center justify-center mb-4">
               <FlipText
                 delayMultiple={0.15}
                 className="text-4xl font-bold text-pink-600 font-[Salsa]"
@@ -156,17 +153,13 @@ export default function Page() {
               </a>
             </div>
 
-            <div className="p-2 grid grid-cols-3 items-center">
-              <Separator orientation="horizontal" className="bg-black/20" />
-              <p className="text-gray-700 font-medium flex items-center justify-center">
-                2025 - SirGhazian
-              </p>
-              <Separator orientation="horizontal" className="bg-black/20" />
-            </div>
+            <p className="pt-2 items-center text-gray-700 font-medium text-[0.8rem]">
+              2025 - SirGhazian
+            </p>
           </div>
         )}
 
-        {loading && <Skeleton className="my-2 h-[250px] w-full mb-2 bg-pink-200" />}
+        {loading && <Skeleton className="my-2 h-[100px] w-full mb-2 bg-pink-200" />}
       </div>
     </main>
   );
